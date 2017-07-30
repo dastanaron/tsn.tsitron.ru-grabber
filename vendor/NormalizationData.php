@@ -24,6 +24,14 @@ class NormalizationData {
 
     }
 
+    public static function PackingRate($string) {
+
+        $string = str_replace('min_quantity', '', $string);
+
+        return strip_tags($string);
+
+    }
+
     public static function getAnalogs($link) {
 
         $analogs = str_replace('<BR>', PHP_EOL, file_get_contents('http://tsn.tsitron.ru/'.$link));
