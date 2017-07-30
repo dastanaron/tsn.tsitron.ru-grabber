@@ -2,21 +2,29 @@
 
 class NormalizationData {
 
-    public static function dump($data)
+    public static function dump($data, $console=true)
     {
-        echo '<pre>';
-        var_dump($data);
-        echo '</pre>';
+        if(!$console) {
+            echo '<pre>';
+            var_dump($data);
+            echo '</pre>';
+        }
+        else {
+            var_dump($data);
+        }
+
     }
 
-    public static function getArticle($string) {
+    public static function getArticle($string)
+    {
 
 
 
         return trim(str_replace('article', PHP_EOL, $string));
     }
 
-    public static function BRToNewString($string) {
+    public static function BRToNewString($string)
+    {
 
         $string = str_replace('property', '', $string);
 
@@ -24,7 +32,8 @@ class NormalizationData {
 
     }
 
-    public static function PackingRate($string) {
+    public static function PackingRate($string)
+    {
 
         $string = str_replace('min_quantity', '', $string);
 
@@ -32,7 +41,8 @@ class NormalizationData {
 
     }
 
-    public static function getAnalogs($link) {
+    public static function getAnalogs($link)
+    {
 
         $analogs = str_replace('<BR>', PHP_EOL, file_get_contents('http://tsn.tsitron.ru/'.$link));
 
@@ -44,7 +54,8 @@ class NormalizationData {
 
     }
 
-    public static function getPicture($link) {
+    public static function getPicture($link)
+    {
 
         $file = file_get_contents($link);
 
@@ -54,6 +65,11 @@ class NormalizationData {
 
         return $path_info['basename'];
 
+    }
+
+    public static function RecordToFile($file, $string)
+    {
+        return file_put_contents($file, $string.PHP_EOL, LOCK_EX | FILE_APPEND);
     }
     
 }
