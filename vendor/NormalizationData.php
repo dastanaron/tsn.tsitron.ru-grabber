@@ -2,7 +2,7 @@
 
 class NormalizationData {
 
-    public static function dump($data, $console=true)
+    public static function dump($data, $console=false)
     {
         if(!$console) {
             echo '<pre>';
@@ -27,6 +27,14 @@ class NormalizationData {
     {
 
         $string = str_replace('property', '', $string);
+
+        return strip_tags(str_replace('<br />', PHP_EOL, $string));
+
+    }
+    public static function clearCategory($string)
+    {
+
+        $string = preg_replace('#filter[\d]#U', '', $string);
 
         return strip_tags(str_replace('<br />', PHP_EOL, $string));
 
