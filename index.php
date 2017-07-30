@@ -143,12 +143,14 @@ foreach ($links as $link) {
 
     }
 
-    if($c >3) {
+   /* if($c >3) {
         break;
-    }
+    }*/
 
     $c++;
 }
+
+echo 'Записано: ' . $c . ' записей';
 
 //Выводим дамп
 //NormalizationData::dump($all);
