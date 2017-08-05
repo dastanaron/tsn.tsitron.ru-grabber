@@ -64,6 +64,14 @@ class NormalizationData {
 
     public static function getPicture($link)
     {
+        if(!empty($link)) {
+
+            $link = 'http://tsn.tsitron.ru'.$link;
+
+        }
+        else {
+            return '';
+        }
 
         $file = file_get_contents($link);
 
